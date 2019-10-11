@@ -10,6 +10,7 @@ import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +22,7 @@ import java.util.Map;
 @EnableKafka
 public class KafkaAnnotationConsumerConfig {
     // 1.消费者配置
+    @Bean
     private static Map<String, Object> consumerConfig(){
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -34,6 +36,7 @@ public class KafkaAnnotationConsumerConfig {
     }
 
     // 2.创建消费者工厂
+    @Bean
     private static ConsumerFactory<String, String> consumerFactory(){
         return new DefaultKafkaConsumerFactory(consumerConfig());
     }

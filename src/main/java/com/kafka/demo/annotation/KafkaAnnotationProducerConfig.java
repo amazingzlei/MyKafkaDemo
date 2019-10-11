@@ -19,7 +19,7 @@ public class KafkaAnnotationProducerConfig {
     // 1.设置生产的参数
     private static Map<String, Object> producerConfigs() {
         Map<String, Object> props = new HashMap<>();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.0.6:9092,192.168.0.8:9092,192.168.137.7:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.0.6:9092,192.168.0.7:9092,192.168.0.8:9092");
         props.put(ProducerConfig.RETRIES_CONFIG, 10);
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, 4096);
         props.put(ProducerConfig.LINGER_MS_CONFIG, 1);
