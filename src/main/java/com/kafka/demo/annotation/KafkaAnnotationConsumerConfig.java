@@ -10,7 +10,6 @@ import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +27,7 @@ public class KafkaAnnotationConsumerConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 "192.168.0.6:9092,192.168.0.7:9092,192.168.0.8:9092");
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "test");
         props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "100");
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "15000");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
@@ -43,7 +43,7 @@ public class KafkaAnnotationConsumerConfig {
     // 3.配置消费者监听器工厂
     @Bean
     private static KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>>
-            containerFactory(){
+            kafkaListenerContainerFactory(){
         ConcurrentKafkaListenerContainerFactory<String, String> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory();
         // 注册工厂
